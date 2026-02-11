@@ -1,0 +1,27 @@
+#pragma once
+//视图DO
+#ifndef _IDMEMBERDO_DO_
+#define _IDMEMBERDO_DO_
+#include "../../../Macros.h"
+
+/**
+ * 数据库实体类
+ */
+class IDmemberDO
+{
+
+	// 编号
+	//CC_SYNTHESIZE(uint64_t, id, Id);
+
+	//姓名
+	CC_SYNTHESIZE(string, xname, Xname);
+	//层级名称
+	CC_SYNTHESIZE(string, xunitLevelName, Xunit_level_name);
+public:
+	IDmemberDO() {
+		xname = "";
+		xunitLevelName = "";
+	}
+};
+
+#endif // !_IDMEMBERDO_DO_
