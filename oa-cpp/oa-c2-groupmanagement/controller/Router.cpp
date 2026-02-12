@@ -23,8 +23,9 @@
 #include "./groupmanagement/GroupManagementController.h"
 
 
-//#include "unitMember/addDel/AddDelUnitMemberController.h"
-//#include "groupMember/addDel/AddDelGroupMemberController.h"
+//#include "UnitMember/AddDel/AddDelUnitMemberController.h"
+//#include "GroupMember/AddDel/AddDelGroupMemberController.h"
+
 
 #ifdef HTTP_SERVER_DEMO
 #include "user/UserController.h"
@@ -33,6 +34,10 @@
 #include "ws/WSController.h"
 
 #endif
+
+
+//#include "test/testController.h"
+
 //#include "organization/group/OrganizationGroupController.h"
 //#include "interface/interfaceController.h"
 //#include "groupmanagement/GroupManagementController.h"
@@ -45,7 +50,8 @@
 //#include "interface/interfaceController.h"
 //#include "test/testController.h"
 //#include "groupInfo/groupInfoController.h"
-//#include "groupInfo/groupInfoController.h"
+
+
 
 //#include "groupInfo/groupInfoController.h"
 
@@ -77,18 +83,13 @@ void Router::initRouter()
 	// 绑定示例控制器
 	//ROUTER_SIMPLE_BIND(interfaceController);
 	////#TIP :系统扩展路由定义，写在这个后面
-	//ROUTER_SIMPLE_BIND(GetGroupListController);
-	//ROUTER_SIMPLE_BIND(AddGroupController);
-	//ROUTER_SIMPLE_BIND(TestController);
-	//ROUTER_SIMPLE_BIND(groupInfoController);
-	//ROUTER_SIMPLE_BIND(OrganizationGroupController);
-	//ROUTER_SIMPLE_BIND(AddDelUnitMemberController);
-	//ROUTER_SIMPLE_BIND(AddDelGroupMemberController);
-	//ROUTER_SIMPLE_BIND(groupInfoController);
+
 
 	//只留这一个
 	ROUTER_SIMPLE_BIND(GroupManagementController);
+	//只留这一个
 	////只留这一个
+
 	//ROUTER_SIMPLE_BIND(GroupController);
 }
 

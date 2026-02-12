@@ -39,10 +39,14 @@ GetGroupInfoVO::Wrapper GetGroupInfoService::getGroupInfoById(const string group
 		ans->name = sub.getxName();
 		ans->id = sub.getxId();
 		ans->description = sub.getxDescription();
+		ans->createTime = sub.getxCreateTime();
+		ans->updateTime = sub.getxUpdateTime();
 
 		//cout << "name:" << (string)ans->name << endl;
 		//cout << "id:" << (string)ans->id << endl;
 		//cout << "description:" << (string)ans->description << endl;
+		//cout << "createTime:" << (string)ans->createTime << endl;
+		//cout << "updateTime:" << (string)ans->updateTime << endl;
 	}
 	return ans;
 }
@@ -61,10 +65,8 @@ GetGroupInfoVO::Wrapper GetGroupInfoService::getGroupInfoByName(const string gro
 		ans->name = sub.getxName();
 		ans->id = sub.getxId();
 		ans->description = sub.getxDescription();
-
-		//cout << "name:" << (string)ans->name << endl;
-		//cout << "id:" << (string)ans->id << endl;
-		//cout << "description:" << (string)ans->description << endl;
+		ans->createTime = sub.getxCreateTime();
+		ans->updateTime = sub.getxUpdateTime();
 	}
 
 	// 将DO转换成DTO，再将DTO转换成VO

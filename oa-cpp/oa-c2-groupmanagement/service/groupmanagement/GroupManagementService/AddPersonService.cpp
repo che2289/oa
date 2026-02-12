@@ -4,23 +4,21 @@
 */
 #include "stdafx.h"
 #include "AddPersonService.h"
-#include "dao/GroupManagement/GroupManagementDAO/AddPersonDAO.h"
+#include "../../../dao/GroupManagement/GroupManagementDAO/AddPersonDAO.h"
 
-AddPersonDTO::Wrapper AddPersonService::saveData(const AddPersonDTO::Wrapper& dto)
+uint64_t AddPersonService::saveData(const AddPersonDTO::Wrapper& dto)
 {
+	uint64_t accept_row = 0;
+	AddPersonDAO dao;
 	// 组装DO数据
 	OrgGroupPersonlistDO data;
 	// 	data.setName(dto->name.getValue(""));
 	// 	data.setSex(dto->sex.getValue(""));
 	// 	data.setAge(dto->age.getValue(1));
-	ZO_STAR_DOMAIN_DTO_TO_DO(data, dto, Group_xid, GROUP_XID, Xperson_list, xpersonList, Xorder_column, xorderColumn)
+	for (int i = 0; i < dto->xpersonList->size(); i++) {
+		ZO_STAR_DOMAIN_DTO_TO_DO(data, dto, Group_xid, GROUP_XID, Xperson_list, xpersonList[i]);
 		// 执行数据添加
-		AddPersonDAO dao;
-	uint64_t res = dao.insert(data);
-	AddPersonDTO::Wrapper ap_dto;
-	if (res) {
-		ap_dto = dto;
-		return ap_dto;
+		accept_row += dao.insert(data);
 	}
-	return {};
+	return accept_row;
 }

@@ -10,7 +10,7 @@
 #include "../../../domain/do/put/OrgGroupPersonlistDO.h"
 
 /**
- * ×Ö¶ÎÆ¥ÅäÓ³Éä
+ * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class AddPersonMapper : public Mapper<OrgGroupPersonlistDO>
 {
@@ -18,9 +18,7 @@ public:
 	OrgGroupPersonlistDO mapper(ResultSet* resultSet) const override
 	{
 		OrgGroupPersonlistDO data;
-		data.setGroup_xid(resultSet->getString(1));
-		data.setXperson_list(resultSet->getString(2));
-		data.setXorder_column(resultSet->getInt(3));
+		data.setGroup_person(resultSet->getString(1));
 		return data;
 	}
 };

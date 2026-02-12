@@ -2,8 +2,8 @@
 #ifndef _MODIFYGROUPINFO_SERVICE_
 #define _MODIFYGROUPINFO_SERVICE_
 #include <list>
-#include "domain/vo/group/GroupVO.h"
-#include "domain/dto/group/GroupDTO.h"
+#include "domain/vo/group/Group_VO.h"
+#include "domain/dto/group/Group_DTO.h"
 
 /**
  * 示例服务实现，演示基础的示例服务实现
@@ -16,7 +16,7 @@ public:
 	// 保存数据
 	//uint64_t saveData(const GroupDTO::Wrapper& dto);
 	// 修改数据
-	bool updateData(const GroupDTO::Wrapper& dto);
+	bool updateData(const Group_DTO::Wrapper& dto);
 };
 
 #endif // !_MODIFYGROUPINFO_SERVICE_

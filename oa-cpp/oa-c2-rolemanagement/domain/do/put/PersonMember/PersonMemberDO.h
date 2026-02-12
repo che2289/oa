@@ -5,20 +5,20 @@
 #include "Macros.h"
 #include <string>
 #include <list>
-#include "domain/do/DoInclude.h"
+#include "domain/DO/DoInclude.h"
 using namespace std;
 
 class PersonMemberDO
 {
 	// ±àºÅ
 	CC_SYNTHESIZE(string, role_xid, ROLE_XID);
-	CC_SYNTHESIZE(string, xpersonList, XpersonList);
+	CC_SYNTHESIZE(string, xgroupList, XgroupList);
 	CC_SYNTHESIZE(int, xorderColumn, XorderColumn);
 
 public:
 	PersonMemberDO() {
-		role_xid = "PersonMember.field.ROLE_XID";
-		xpersonList = "PersonMember.field.xpersonList";
+		role_xid = "PersonMember.field.GROUP_XID";
+		xgroupList = "PersonMember.field.xgroupList";
 		xorderColumn = 1;
 	}
 };

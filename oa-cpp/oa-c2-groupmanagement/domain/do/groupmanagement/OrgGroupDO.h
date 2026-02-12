@@ -9,6 +9,13 @@
 
 class OrgGroupDO
 {
+	//// 姓名
+		//CC_SYNTHESIZE(string, name, Name);
+		//// 编号
+		//CC_SYNTHESIZE(string, id, Id);
+		//// 描述
+		//CC_SYNTHESIZE(string, description, Description);
+
 	// 编号
 	CC_SYNTHESIZE(string, xid, xId);
 	//创建时间

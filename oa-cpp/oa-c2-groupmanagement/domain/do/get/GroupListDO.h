@@ -5,7 +5,7 @@
 #include "../DoInclude.h"
 
 /**
- * 数据库实体类
+ * 示例数据库实体类
  */
 class GroupListDO
 {

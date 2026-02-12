@@ -3,7 +3,7 @@
 #define _ADDROLE_SERVICE_
 
 #include <list>
-#include "domain/vo/put/Addrole/AddroleVO.h"
+#include "domain/vo/put/addrole/AddroleVO.h"
 #include "domain/dto/rolemanagement/RoleManagementDTO/put/addrole/AddroleDTO.h"
 
 class AddroleService

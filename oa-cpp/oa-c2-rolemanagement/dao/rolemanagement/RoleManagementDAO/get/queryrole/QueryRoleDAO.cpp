@@ -21,13 +21,13 @@ uint64_t QueryRoleDAO::count(const QueryRoleQuery::Wrapper & query)
 	return sqlSession->executeQueryNumerical(sqlStr, params);
 }
 
-std::list<OrgRoleDO> QueryRoleDAO::selectWithPage(const QueryRoleQuery::Wrapper& query)
+std::list<OrgRoleNameDO> QueryRoleDAO::selectWithPage(const QueryRoleQuery::Wrapper& query)
 {
 	stringstream sql;
-	sql << "SELECT xid,xname,xunique FROM org_role";
+	sql << "SELECT xid,xname FROM org_role";
 	SAMPLE_TERAM_PARSE(query, sql);
 	sql << " LIMIT " << ((query->pageIndex - 1) * query->pageSize) << "," << query->pageSize;
 	QueryRoleMapper mapper;
 	string sqlStr = sql.str();
-	return sqlSession->executeQuery<OrgRoleDO, QueryRoleMapper>(sqlStr, mapper, params);
+	return sqlSession->executeQuery<OrgRoleNameDO, QueryRoleMapper>(sqlStr, mapper, params);
 }

@@ -4,24 +4,38 @@
 
 #include "../DoInclude.h"
 /**
- * 菜单数据库实体
+ * 测试菜单数据库实体
  */
 class UserDO
 {
 	// 人员名称
-	CC_SYNTHESIZE(string, name, Name);
+	CC_SYNTHESIZE(string, xname, Xname);
 	// 人员工号
-	CC_SYNTHESIZE(uint64_t, id, Id);
+	CC_SYNTHESIZE(int, xorderNumber, XorderNumber);
 	// 手机号码
-	CC_SYNTHESIZE(string, phone, Phone);
+	CC_SYNTHESIZE(string, xmobile, Xmobile);
 	// 邮件地址
-	CC_SYNTHESIZE(string, mail, Mail);
+	CC_SYNTHESIZE(string, xmail, Xmail);
+	//// 个人编码
+	//CC_SYNTHESIZE(string, xid, Xid);
+	//群组编码
+	CC_SYNTHESIZE(string, groupXid, GROUP_XID);
 public:
+	/*UserDO() {}
+	UserDO(string id, string name, string phone, string mail)
+	{
+		this->id = id;
+		this->name = name;
+		this->phone = phone;
+		this->mail = mail;
+	}*/
 	UserDO() {
-		id = 0;
-		name = "";
-		phone = "";
-		mail = "";
+		xorderNumber = 0;
+		xname = "";
+		xmobile = "";
+		xmail = "";
+		//xid = "";
+		groupXid = "";
 	}
 };
 

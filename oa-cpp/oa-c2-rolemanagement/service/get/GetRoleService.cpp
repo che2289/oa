@@ -19,11 +19,6 @@ GetroleVO::Wrapper GetRoleService::GetRoleById(const string roleId)
 		ans->name = sub.getName();
 		ans->key = sub.getKey();
 		ans->refer = sub.getRefer();
-		ans->fullName = sub.getFullname();
-		ans->startTime = sub.getStartTime();
-		ans->endTime = sub.getEndTime();
-		
-
 
 	}
 	return ans;

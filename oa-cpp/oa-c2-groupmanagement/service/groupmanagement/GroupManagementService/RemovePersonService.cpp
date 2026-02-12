@@ -4,10 +4,11 @@
 */
 #include "stdafx.h"
 #include "RemovePersonService.h"
-#include "dao/GroupManagement/GroupManagementDAO/RemovePersonDAO.h"
+#include "../../../dao/GroupManagement/GroupManagementDAO/RemovePersonDAO.h"
+#include "domain/vo/BaseJsonVO.h"
 
-bool RemovePersonService::removeData(const string& group_person)
+int RemovePersonService::removeData(const RemovePersonDTO::Wrapper& group_person)
 {
 	RemovePersonDAO dao;
-	return dao.deleteByXgroup_Xperson(group_person) == 1;
+	return dao.deleteByXgroup_Xperson(group_person);
 }

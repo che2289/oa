@@ -18,6 +18,7 @@ public:
 		OrgGroupGrouplistDO data;
 		data.setName(resultSet->getString(1));
 		data.setAllname(resultSet->getString(2));
+		data.setXgroupList(resultSet->getString(3));
 		return data;
 	}
 };

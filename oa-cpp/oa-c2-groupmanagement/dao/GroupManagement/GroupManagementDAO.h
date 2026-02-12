@@ -1,3 +1,7 @@
+//
+// Created by asd on 2024/10/25.
+//
+
 #ifndef GROUPMANAGEMENTDAO_H
 #define GROUPMANAGEMENTDAO_H
 #include <BaseDAO.h>
@@ -37,6 +41,15 @@ public:
 	list<oatpp::String> queryGroupIdListByGroupId(oatpp::String groupId);
 	//通过群组id查询所属的组织id列表
 	list<oatpp::String> queryUnitIdListByGroupId(oatpp::String groupId);
+
+	//// 统计数据条数
+	//uint64_t count(const SampleQuery::Wrapper& query);
+	//// 分页查询数据
+	//list<SampleDO> selectWithPage(const SampleQuery::Wrapper& query);
+	//// 通过姓名查询数据
+	//list<SampleDO> selectByName(const string& name);
+	//// 修改数据
+	//int update(const SampleDO& uObj);
 };
 
 

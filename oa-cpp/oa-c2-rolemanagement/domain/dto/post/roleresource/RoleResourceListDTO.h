@@ -12,9 +12,9 @@ class RoleResourceListDTO : public oatpp::DTO, public TreeNode
 {
 	DTO_INIT(RoleResourceListDTO, DTO);
 	//²Ëµ¥idList
-	API_DTO_FIELD(List<String>, idList, ZH_WORDS_GETTER("role.field.menuList"), true, {});
+	API_DTO_FIELD(List<String>, idList, ZH_WORDS_GETTER("role.put.field.menuList"), true, {});
 	//½ÇÉ«Î¨Ò»id
-	API_DTO_FIELD(String, roleId, ZH_WORDS_GETTER("role.field.roleId"), true, "133bce45");
+	API_DTO_FIELD(String, roleId, ZH_WORDS_GETTER("role.put.field.roleId"), true, "133bce45");
 
 };
 

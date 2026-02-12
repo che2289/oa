@@ -15,7 +15,6 @@ class PersonListQuery : public PageQuery
 	// Î¨Ò»±àÂë
 	DTO_FIELD(String, xunique);
 	DTO_FIELD_INFO(xunique) {
-		info->required = true;
 		info->description = "xunique";
 	}
 };

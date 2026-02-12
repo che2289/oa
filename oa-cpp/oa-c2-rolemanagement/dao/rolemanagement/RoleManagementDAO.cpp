@@ -40,7 +40,7 @@ int RoleManagementDAO::update(const OrgRoleDO& uObj)
 list<OrgRolePersonListDO> RoleManagementDAO::selectWithPage(const PersonListQuery::Wrapper& query)
 {
     stringstream sql;
-    sql << "SELECT p.xname,p.xemployee,p.xmobile,p.xmail,p.xid \
+    sql << "SELECT p.xname,p.xemployee,p.xmobile,p.xmail \
 			FROM org_role_personlist AS rp \
 			JOIN org_person AS p ON rp.xpersonlist = p.xid \
 			JOIN org_role AS r ON rp.ROLE_XID = r.xid";
@@ -111,15 +111,15 @@ uint64_t RoleManagementDAO::updateOrgRoleGroupList(const string roleId, list<oat
 
     for (const auto item : dataMenuList)
     {
-        maxOrderColumn = selectMaxXordercolumn(roleId, "org_role_menulist", "role_id");
-        string sql = "SELECT xorderColumn FROM `org_role_menulist` WHERE role_id = ? AND menuList = ?";
+        maxOrderColumn = selectMaxXordercolumn(roleId, "org_res_role_menu", "role_id");
+        string sql = "SELECT xorderColumn FROM `org_res_role_menu` WHERE role_id = ? AND menuList = ?";
         uint64_t columnId = sqlSession->executeQueryNumerical(sql, "%s%s", roleId, item.getValue({}));
         if (!(columnId == maxOrderColumn))
         {
-            sql = "UPDATE `org_role_menulist` SET xorderColumn = ? WHERE role_id = ? AND xorderColumn = ? ";
+            sql = "UPDATE `org_res_role_menu` SET xorderColumn = ? WHERE role_id = ? AND xorderColumn = ? ";
             sqlSession->executeUpdate(sql, "%i%s%i", columnId, roleId, maxOrderColumn);
         }
-        sql = "DELETE FROM `org_role_menulist` WHERE role_id = ? AND menuList = ?";
+        sql = "DELETE FROM `org_res_role_menu` WHERE role_id = ? AND menuList = ?";
         count += sqlSession->executeUpdate(sql, "%s%s", roleId, item.getValue({}));
     }
     if (count == 0)
@@ -165,7 +165,7 @@ uint64_t RoleManagementDAO::deleteOrgRoleGroupListOperation(const string roleId,
 
 std::list<oatpp::String> RoleManagementDAO::selectGroupList(const string roleId)
 {
-	string sql = "SELECT xgroupList FROM org_role_menulist WHERE ROLE_XID = ?";
+	string sql = "SELECT xgroupList FROM org_role_grouplist WHERE ROLE_XID = ?";
 	RoleGroupListMapper mapper;
 	return sqlSession->executeQuery<oatpp::String,RoleGroupListMapper>(sql, mapper, "%s", roleId);
 
@@ -173,7 +173,7 @@ std::list<oatpp::String> RoleManagementDAO::selectGroupList(const string roleId)
 
 std::list<oatpp::String> RoleManagementDAO::selectMenuList(const string roleId)
 {
-	string sql = "SELECT menuList FROM org_role_menulist WHERE role_id = ?";
+	string sql = "SELECT menuList FROM org_res_role_menu WHERE role_id = ?";
 	MenuListMapper mapper;
 	return sqlSession->executeQuery<oatpp::String, MenuListMapper>(sql, mapper, "%s", roleId);
 }
@@ -192,7 +192,7 @@ std::list<RoleResourceDO> RoleManagementDAO::selectRoleResource(const std::list<
         return {};
     }
     // 构建 SQL 查询语句
-    std::string sql = "SELECT menu_id, menu_name, is_button, menu_type, parent_id FROM org_menu WHERE menu_id IN (";
+    std::string sql = "SELECT menu_id, menu_name, is_button, menu_type, parent_id FROM org_res_menu WHERE menu_id IN (";
     // 构建参数占位符，例如 (?, ?, ?)
     std::ostringstream placeholders;
     for (auto it = menuList.begin(); it != menuList.end(); ++it) {
@@ -220,7 +220,7 @@ uint64_t RoleManagementDAO::insertToOrgResRoleMenu(const std::list<OrgResRoleMen
     {
         return 0;
     }
-    string sql = "INSERT INTO `org_role_menulist` (`role_id`, `menuList`, `xorderColumn`) VALUES ";
+    string sql = "INSERT INTO `org_res_role_menu` (`role_id`, `menuList`, `xorderColumn`) VALUES ";
     std::ostringstream placeholders;
     for (auto it = listIobj.begin();it != listIobj.end();++it)
     {
@@ -253,15 +253,15 @@ uint64_t RoleManagementDAO::deleteOrgResRoleMenu(const string roleId, list<oatpp
     for (const auto item : dataMenuList)
     {
         std::cout << item.getValue({}) << std::endl;
-        maxOrderColumn = selectMaxXordercolumn(roleId, "org_role_menulist", "role_id");
-        string sql = "SELECT xorderColumn FROM `org_role_menulist` WHERE role_id = ? AND menuList = ?";
+        maxOrderColumn = selectMaxXordercolumn(roleId, "org_res_role_menu", "role_id");
+        string sql = "SELECT xorderColumn FROM `org_res_role_menu` WHERE role_id = ? AND menuList = ?";
         uint64_t columnId = sqlSession->executeQueryNumerical(sql, "%s%s", roleId, item.getValue({}));
         if (!(columnId == maxOrderColumn))
         {
-            sql = "UPDATE `org_role_menulist` SET xorderColumn = ? WHERE role_id = ? AND xorderColumn = ? ";
+            sql = "UPDATE `org_res_role_menu` SET xorderColumn = ? WHERE role_id = ? AND xorderColumn = ? ";
             sqlSession->executeUpdate(sql, "%i%s%i", columnId, roleId, maxOrderColumn);
         }
-        sql = "DELETE FROM `org_role_menulist` WHERE role_id = ? AND menuList = ?";
+        sql = "DELETE FROM `org_res_role_menu` WHERE role_id = ? AND menuList = ?";
         count += sqlSession->executeUpdate(sql, "%s%s", roleId, item.getValue({}));
     }
     if (count == 0)

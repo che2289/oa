@@ -21,14 +21,6 @@ class QueryRoleDTO : public oatpp::DTO {
 	DTO_FIELD_INFO(xname) {
 		info->description = ZH_WORDS_GETTER("rolelist.field.name");
 	}
-
-	DTO_FIELD(String, xunique);
-	DTO_FIELD_INFO(xunique) {
-		info->description = "xunique";
-	}
-
-
-
 };
 
 /**

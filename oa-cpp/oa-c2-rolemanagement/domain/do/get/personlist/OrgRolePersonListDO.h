@@ -18,10 +18,8 @@ class OrgRolePersonListDO
 	CC_SYNTHESIZE(string, xmobile, XMobile);
 	//” œ‰
 	CC_SYNTHESIZE(string, xmail, XMail);
-
-	CC_SYNTHESIZE(string, xid, Xid);
 public:
-	OrgRolePersonListDO() : xname(""), xemployee(""), xmobile(""), xmail(""),xid(""){}
+	OrgRolePersonListDO() : xname(""), xemployee(""), xmobile(""), xmail(""){}
 };
 
 #endif // !_ORG_ROLE_PERSON_LIST_DO_

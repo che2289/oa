@@ -4,9 +4,9 @@
 */
 #include "stdafx.h"
 #include "IDmemberQueryService.h"
-#include "dao/GroupManagement/GroupManagementDAO/IDmemberDAO.h"
-#include "domain/do/get/IDmemberDO.h"
-#include "Macros.h"
+#include "../../../dao/GroupManagement/GroupManagementDAO/IDmemberDAO.h"
+#include "../../../domain/do/get/IDmemberDO.h"
+#include "../../../Macros.h"
 
 IDmemberPageDTO::Wrapper IDmemberQueryService::listAll(const IDmemberQuery::Wrapper& query)
 {
@@ -14,7 +14,6 @@ IDmemberPageDTO::Wrapper IDmemberQueryService::listAll(const IDmemberQuery::Wrap
 	auto pages = IDmemberPageDTO::createShared();
 	pages->pageIndex = query->pageIndex;
 	pages->pageSize = query->pageSize;
-
 	// 查询数据总条数
 	IDmemberDAO dao;
 	uint64_t count = dao.count(query);
@@ -38,7 +37,7 @@ IDmemberPageDTO::Wrapper IDmemberQueryService::listAll(const IDmemberQuery::Wrap
 		//ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, GROUP_XID,Group_xid,xidentityList, Xidentity_list, xorderColumn, Xorder_column);
 		//ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, group_xid, GROUP_XID);
 		//ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, xorder_column, xorderColumn);
-		ZO_STAR_DOMAIN_DO_TO_DTO(dto,sub, xname,Xname, xunitLevelName, Xunit_level_name)
+		ZO_STAR_DOMAIN_DO_TO_DTO(dto,sub, GROUP_XID, Group_xid,xname,Xname, xunitLevelName, Xunit_level_name, xidentityList, XidentityList)
 		pages->addData(dto);
 
 	}

@@ -5,7 +5,6 @@
 #include"../DoInclude.h"
 #include"../../GlobalInclude.h"
 
-
 class GetRoleDO
 {
 	//三个参数，第二个参数：实际的类成员变量名，用于存储对象的唯一标识符，内部使用
@@ -17,24 +16,11 @@ class GetRoleDO
 	CC_SYNTHESIZE(string, key, Key);
 	// ?????è??
 	CC_SYNTHESIZE(string, refer, Refer);
-	//获取角色全称
-	CC_SYNTHESIZE(string, fullname, Fullname);
-	//创建时间
-	CC_SYNTHESIZE(string, startTime, StartTime);
-	//修改时间
-	CC_SYNTHESIZE(string, endTime, EndTime);
-
-
 public:
 	GetRoleDO() {
 		name = "";
 		key = "";
 		refer = "";
-		fullname = "";
-		startTime = "";
-		endTime = "";
-
-
 	}
 
 };

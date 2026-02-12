@@ -11,7 +11,7 @@ public:
 
 
 		// 通过姓名查询数据
-	//list<GetRoleDO> selectByName(const string& name);
+	list<GetRoleDO> selectByName(const string& name);
 	// 通过id查询数据
 	list<GetRoleDO> selectById(const string& id);
 

@@ -4,21 +4,28 @@
 #include "../DoInclude.h"
 
 /**
- * 数据库实体类
+ * 示例数据库实体类
  */
 class GroupDO
 {
 	// 编号
-	CC_SYNTHESIZE(uint64_t, id, Id);
+	CC_SYNTHESIZE(string, xid, Xid);
 	// 姓名
-	CC_SYNTHESIZE(string, name, Name);
+	CC_SYNTHESIZE(string, xname, Xname);
 	// 描述
-	CC_SYNTHESIZE(string, info, Info);
+	CC_SYNTHESIZE(string, xdescription, Xdescription);
 public:
+	//GruopDO() {}
+	/*ModifyDO(string id, string name, string info)
+	{
+		this->id = id;
+		this->name = name;
+		this->info = info;
+	}*/
 	GroupDO() {
-		id = 0;
-		name = "";
-		info = "";
+		xid = "";
+		xname = "";
+		xdescription = "";
 	}
 };
 

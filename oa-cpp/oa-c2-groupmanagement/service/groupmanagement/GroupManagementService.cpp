@@ -23,15 +23,12 @@ AddGroupMemberJsonVO::Wrapper GroupManagementService::addGroupMember
 
 	//先根据id查出它从属的群组id列表
 	GroupManagementDAO dao;
-	auto groupList = dao.queryGroupIdListByGroupId(dto->gruopId);
-	list<string> groupIdList;
-	for (auto& item : groupList) {
-		if (item == groupId) {
+	auto groupIdList = dao.queryGroupIdListByGroupId(dto->gruopId);
+
+	for (auto& item : *dto->groupList) {
+		if (item == *dto->gruopId)
 			//不能添加自己的组id到自己的群组成员列表中
 			return nullptr;
-		}
-		//将org-group-groupList的groupList字段取出来
-		groupIdList.emplace_back(item);
 	}
 
 	//第二步是处理群组id列表，

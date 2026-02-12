@@ -6,7 +6,6 @@
 #ifndef _REMOVEPERSON_SERVICE_
 #define _REMOVEPERSON_SERVICE_
 #include <list>
-#include "domain/vo/del/RemovePersonVO.h"
 #include "domain/dto/del/RemovePersonDTO.h"
 
 /**
@@ -16,7 +15,7 @@ class RemovePersonService
 {
 public:
 	// 通过xpersonList删除数据
-	bool removeData(const string&group_person);
+	int removeData(const RemovePersonDTO::Wrapper& dto);
 };
 
 #endif // !_REMOVEPERSON_SERVICE_

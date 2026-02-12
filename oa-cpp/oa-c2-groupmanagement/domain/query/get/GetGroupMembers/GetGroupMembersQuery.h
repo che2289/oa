@@ -31,12 +31,5 @@ class GetGroupMembersQuery : public PageQuery
 	}
 
 };
-/**
- * 示例分页传输对象
- */
-class GetGroupMembersPageQuery : public PageDTO<GetGroupMembersQuery::Wrapper>
-{
-	DTO_INIT(GetGroupMembersPageQuery, PageDTO<GetGroupMembersQuery::Wrapper>);
-};
 #include OATPP_CODEGEN_END(DTO)
 #endif // !_GetGroupMembers_QUERY_

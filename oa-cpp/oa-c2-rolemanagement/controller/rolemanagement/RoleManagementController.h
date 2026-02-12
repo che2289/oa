@@ -18,7 +18,7 @@
 #include "domain/vo/BaseJsonVO.h"	
 #include "domain/GlobalInclude.h"
 #include "domain/dto/rolemanagement/RoleManagementDTO/put/addrole/AddroleDTO.h"
-#include "domain/vo/put/Addrole/AddroleVO.h"
+#include "domain/vo/put/addrole/AddroleVO.h"
 #include "domain/query/get/queryrole/QueryRoleQuery.h"
 #include "domain/dto/rolemanagement/RoleManagementDTO/get/queryrole/QueryRoleDTO.h"
 #include "domain/vo/get/queryrole/QueryRoleVO.h"
@@ -75,7 +75,7 @@ public:
 		// 定义接口标题
 		API_DEF_ADD_TITLE(ZH_WORDS_GETTER("addrole.post.summary"));
 		// 定义默认授权参数（可选定义，如果定义了，下面ENDPOINT里面需要加入API_HANDLER_AUTH_PARAME）
-		API_DEF_ADD_AUTH();
+		//API_DEF_ADD_AUTH();
 		// 定义响应参数格式
 		API_DEF_ADD_RSP_JSON_WRAPPER(Uint64JsonVO);
 		// 定义其他参数描述
@@ -84,7 +84,7 @@ public:
 		API_DEF_ADD_QUERY_PARAMS(String, "description", ZH_WORDS_GETTER("addrole.put.desc"), "desc", true);
 	}
 	// 3.2 定义新增接口处理 , API_HANDLER_AUTH_PARAME
-	ENDPOINT(API_M_POST, "/role/add-role", addRole, BODY_DTO(AddroleDTO::Wrapper, dto), API_HANDLER_AUTH_PARAME) {
+	ENDPOINT(API_M_POST, "/rolemanegement/add-role", addRole, BODY_DTO(AddroleDTO::Wrapper, dto)) {
 		// 呼叫执行函数响应结果
 		API_HANDLER_RESP_VO(execAddRole(dto));
 	}
@@ -102,12 +102,10 @@ public:
     }
 
     // 定义查询接口处理
-    ENDPOINT(API_M_GET, "/role/query_roleinfo", queryGetrole, QUERY(String, id), API_HANDLER_AUTH_PARAME) {
+    ENDPOINT(API_M_GET, "/rolemanagement/query_role", queryGetrole, QUERY(String, id), API_HANDLER_AUTH_PARAME) {
         // 呼叫执行函数响应结果
         API_HANDLER_RESP_VO(executQueryGetRole(id));
     }
-
-
 
     // 删除角色
     // 3.1 定义删除接口描述
@@ -115,37 +113,33 @@ public:
         // 定义标题和返回类型以及授权支持
         API_DEF_ADD_COMMON_AUTH(ZH_WORDS_GETTER("addroleDTO.del"), String);
         // 定义其他路径参数说明
-        API_DEF_ADD_QUERY_PARAMS(String, "id", ZH_WORDS_GETTER("addroleDTO.field.key"), "", true);
+        API_DEF_ADD_PATH_PARAMS(String, "id", ZH_WORDS_GETTER("addroleDTO.field.key"), "", true);
     }
 
     // 3.2 定义删除接口处理
-	ENDPOINT(API_M_DEL, "/role/del-role", removeSample, QUERY(String, id), API_HANDLER_AUTH_PARAME) {
-		// 呼叫执行函数响应结果
-		API_HANDLER_RESP_VO(execRemoveRole(id));
-	}
-
+    API_HANDLER_ENDPOINT_AUTH(API_M_DEL, "/rolemanagement/{id}", removeSample, PATH(String, id), execRemoveRole(id));
 
 
 /// ////////////////获取角色信息与删除角色//////////////////
 
 	//修改role lhg
 	API_DEF_ENDPOINT_INFO_AUTH(ZH_WORDS_GETTER("modifyrole.summary"), modifyRole, Uint64JsonVO::Wrapper);
-	API_HANDLER_ENDPOINT_AUTH(API_M_PUT, "/role/modify-role", modifyRole, BODY_DTO(UpdateRoleDTO::Wrapper, dto), execModifyRole(dto));
+	API_HANDLER_ENDPOINT_AUTH(API_M_PUT, "/role/modifyrole", modifyRole, BODY_DTO(UpdateRoleDTO::Wrapper, dto), execModifyRole(dto));
 
 	//获取角色的personlist(分页) lhg
 	ENDPOINT_INFO(queryPersonList) {
 		API_DEF_ADD_COMMON_AUTH(ZH_WORDS_GETTER("querypersonlist.summary"), PersonListPageJsonVO::Wrapper);
 		API_DEF_ADD_PAGE_PARAMS();
-		API_DEF_ADD_QUERY_PARAMS(String, "xunique", ZH_WORDS_GETTER("querypersonlist.unique"), "xxxx", true);
+		API_DEF_ADD_QUERY_PARAMS(String, "xunique", ZH_WORDS_GETTER("querypersonlist.unique"), "xxxx", false);
 	}
-	API_HANDLER_ENDPOINT_QUERY_AUTH(API_M_GET, "/role/query-person-list", queryPersonList, PersonListQuery, execQueryPersonList(query, authObject->getPayload()));
+	API_HANDLER_ENDPOINT_QUERY_AUTH(API_M_GET, "/role/queryPersonList", queryPersonList, PersonListQuery, execQueryPersonList(query, authObject->getPayload()));
 
 	// 3.1 定义查询接口描述
 	ENDPOINT_INFO(queryRolelist) {
 		// 定义接口标题
 		API_DEF_ADD_TITLE(ZH_WORDS_GETTER("rolelist.get.summary"));
 		// 定义默认授权参数（可选定义，如果定义了，下面ENDPOINT里面需要加入API_HANDLER_AUTH_PARAME）
-		API_DEF_ADD_AUTH();
+		//API_DEF_ADD_AUTH();
 		// 定义响应参数格式
 		API_DEF_ADD_RSP_JSON_WRAPPER(QueryRolePageJsonVO);
 		// 定义分页查询参数描述
@@ -154,19 +148,12 @@ public:
 		API_DEF_ADD_QUERY_PARAMS(String, "key", ZH_WORDS_GETTER("rolelist.field.words"), "key", false);	
 	}
 	// 3.2 定义查询接口处理 , API_HANDLER_AUTH_PARAME
-	// 定义查询接口处理
-	ENDPOINT(API_M_GET, "/role/query-role-name", queryRolelist, QUERIES(QueryParams, queryParams),API_HANDLER_AUTH_PARAME) {
+	ENDPOINT(API_M_GET, "/rolemanegement/list-role", queryRolelist, QUERIES(QueryParams, queryParams)) {
 		// 解析查询参数为Query领域模型
 		API_HANDLER_QUERY_PARAM(userQuery, QueryRoleQuery, queryParams);
 		// 呼叫执行函数响应结果 authObject->getPayload()
 		API_HANDLER_RESP_VO(execQueryRolelist(userQuery));
 	}
-
-	///--------------------------------------------------------------------------
-
-	///--------------------------------------------------------------------------
-
-
 
 	//定义添加接口描述
 	ENDPOINT_INFO(addMember) {
@@ -178,14 +165,19 @@ public:
 		API_DEF_ADD_RSP_JSON_WRAPPER(Uint64JsonVO);
 	}
 	//定义新增接口处理
-	ENDPOINT(API_M_PUT, "/role/add-person-member", addMember, BODY_DTO(PersonMemberDTO::Wrapper, dto), API_HANDLER_AUTH_PARAME) {
+	ENDPOINT(API_M_PUT, "/add_PersonMember", addMember, BODY_DTO(PersonMemberDTO::Wrapper, dto), API_HANDLER_AUTH_PARAME) {
 		// 呼叫执行函数响应结果
 		API_HANDLER_RESP_VO(execAddMember(dto));
 	}
-	//删除群组成员
-	API_DEF_ENDPOINT_INFO_AUTH(ZH_WORDS_GETTER("PersonMember.delete.summary"), delpersonmember, Uint64JsonVO::Wrapper);
-	// 
-	API_HANDLER_ENDPOINT_AUTH(API_M_DEL, "/role/del-person-member", delpersonmember, BODY_DTO(PersonMemberDTO::Wrapper, xpersonList), execDelPersonMember(xpersonList));
+	//定义删除接口描述
+	ENDPOINT_INFO(removeMember) {
+		// 定义标题和返回类型以及授权支持
+		API_DEF_ADD_COMMON_AUTH(ZH_WORDS_GETTER("PersonMember.delete.summary"), Uint64JsonVO::Wrapper);
+		// 定义其他路径参数说明
+		API_DEF_ADD_PATH_PARAMS(String, "ROLE_XID", ZH_WORDS_GETTER("PersonMember.field.ROLE_XID"), "1", true);
+	}
+	// 定义删除接口处理
+	API_HANDLER_ENDPOINT_AUTH(API_M_DEL, "/PersonMember/{ROLE_XID}", removeMember, PATH(UInt64, ROLE_XID), execRemoveMember(ROLE_XID));
 
 	// 定义查询接口描述
 	ENDPOINT_INFO(queryPersonMember) {
@@ -198,11 +190,11 @@ public:
 		// 定义分页查询参数描述
 		API_DEF_ADD_PAGE_PARAMS();
 		// 定义其他查询参数描述
-		API_DEF_ADD_QUERY_PARAMS(String, "ROLE_XID", ZH_WORDS_GETTER("PersonMember.field.ROLE_XID"), "role_xid", true);
+		API_DEF_ADD_QUERY_PARAMS(String, "ROLE_XID", ZH_WORDS_GETTER("PersonMember.field.ROLE_XID"), "1", false);
 		
 	}
 	// 定义查询接口处理
-	ENDPOINT(API_M_GET, "/role/query-person-member", queryPersonMember, QUERIES(QueryParams, queryParams), API_HANDLER_AUTH_PARAME) {
+	ENDPOINT(API_M_GET, "/GetPersonMember", queryPersonMember, QUERIES(QueryParams, queryParams), API_HANDLER_AUTH_PARAME) {
 		// 解析查询参数为Query领域模型
 		API_HANDLER_QUERY_PARAM(userQuery, GetPersonMemberQuery, queryParams);
 		// 呼叫执行函数响应结果
@@ -235,10 +227,8 @@ private:
 
 	// 增加个人成员
 	Uint64JsonVO::Wrapper execAddMember(const PersonMemberDTO::Wrapper& dto);
-
 	// 删除成员
-	Uint64JsonVO::Wrapper execDelPersonMember(const PersonMemberDTO::Wrapper& xpersonList);
-	
+	Uint64JsonVO::Wrapper execRemoveMember(const UInt64& ROLE_XID);
 	// 演示分页查询数据
 	GetPersonMemberPageJsonVO::Wrapper execGetPersonMember(const GetPersonMemberQuery::Wrapper& query, const PayloadDTO& payload);
 };

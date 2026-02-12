@@ -16,24 +16,33 @@ class UserQuery : public PageQuery
 	DTO_INIT(UserQuery, PageQuery);
 
 	//名称
-	DTO_FIELD(String, name);
-	DTO_FIELD_INFO(name) {
+	DTO_FIELD(String, xname);
+	DTO_FIELD_INFO(xname) {
 		info->description = ZH_WORDS_GETTER("role.field.name");
 	}
 	// 编号
-	DTO_FIELD(UInt64, id);
-	DTO_FIELD_INFO(id) {
+	DTO_FIELD(UInt32, xorderNumber);
+	DTO_FIELD_INFO(xorderNumber) {
 		info->description = ZH_WORDS_GETTER("role.field.id");
 	}
 	// 手机号码
-	DTO_FIELD(String, phone);
-	DTO_FIELD_INFO(phone) {
+	DTO_FIELD(String, xmobile);
+	DTO_FIELD_INFO(xmobile) {
 		info->description = ZH_WORDS_GETTER("role.field.phone");
 	}
 	// 邮件
-	DTO_FIELD(String, mail);
-	DTO_FIELD_INFO(mail) {
+	DTO_FIELD(String, xmail);
+	DTO_FIELD_INFO(xmail) {
 		info->description = ZH_WORDS_GETTER("role.field.mail");
+	}
+	// 邮件
+	DTO_FIELD(String, xid);
+	DTO_FIELD_INFO(xid) {
+		info->description = ZH_WORDS_GETTER("role.field.xid");
+	}
+	DTO_FIELD(String, GROUP_XID);
+	DTO_FIELD_INFO(GROUP_XID) {
+		info->description = ZH_WORDS_GETTER("group.field.id");
 	}
 };
 

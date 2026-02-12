@@ -6,7 +6,7 @@
 #include <domain/do/get/UserDO.h>
 
 /**
- * ×Ö¶ÎÆ¥ÅäÓ³Éä
+ * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class UserMapper : public Mapper<UserDO>
 {
@@ -14,10 +14,11 @@ public:
 	UserDO mapper(ResultSet* resultSet) const override
 	{
 		UserDO data;
-		data.setId(resultSet->getUInt64(1));
-		data.setName(resultSet->getString(2));
-		data.setPhone(resultSet->getString(3));
-		data.setMail(resultSet->getString(4));
+		data.setGROUP_XID(resultSet->getString(1));
+		data.setXorderNumber(resultSet->getInt(2));
+		data.setXname(resultSet->getString(3));
+		data.setXmobile(resultSet->getString(4));
+		data.setXmail(resultSet->getString(5));
 		return data;
 	}
 };

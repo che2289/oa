@@ -1,4 +1,8 @@
 #pragma once
+/*
+ @Author: LemonFlavoredSoda
+ @Date: 2024年 10月 26日 星期六 09:37:55 CST
+*/
 #ifndef _REMOVEPERSON_MAPPER_
 #define _REMOVEPERSON_MAPPER_
 
@@ -6,7 +10,7 @@
 #include "../../../domain/do/put/OrgGroupPersonlistDO.h"
 
 /**
- * 字段匹配映射
+ * 示例表字段匹配映射
  */
 class RemovePersonMapper : public Mapper<OrgGroupPersonlistDO>
 {

@@ -13,9 +13,10 @@ class PersonMemberDTO : public oatpp::DTO
 {
 	DTO_INIT(PersonMemberDTO, DTO);
 	//Ô±¹¤¹¤ºÅ
-	API_DTO_FIELD(List<String>, xpersonList, ZH_WORDS_GETTER("PersonMember.field.xpersonList"), true, {});
-	API_DTO_FIELD_DEFAULT(String,role_xid , ZH_WORDS_GETTER("PersonMember.field.ROLE_XID"));
-	//API_DTO_FIELD_DEFAULT(UInt64, xorderColumn, ZH_WORDS_GETTER("PersonMember.field.xorderColumn"));
+	API_DTO_FIELD_DEFAULT(String, role_xid, ZH_WORDS_GETTER("PersonMember.field.ROLE_XID"));
+	API_DTO_FIELD_DEFAULT(String, xgroupList, ZH_WORDS_GETTER("PersonMember.field.xgroupList"));
+	API_DTO_FIELD_DEFAULT(UInt64, xorderColumn, ZH_WORDS_GETTER("PersonMember.field.xorderColumn"));
+
 };
 
 /**

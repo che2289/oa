@@ -234,33 +234,7 @@ GetroleJsonVO::Wrapper RoleManagementController::executQueryGetRole(const String
     return jvo;
 }
 
-Uint64JsonVO::Wrapper RoleManagementController::execDelPersonMember(const PersonMemberDTO::Wrapper& xpersonList)
-{
-	auto jvo = Uint64JsonVO::createShared();
-	
-	if (!xpersonList->xpersonList || !xpersonList->role_xid)
-	{
-		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
-		return jvo;
-	}
-	if (xpersonList->xpersonList->empty() || xpersonList->role_xid->empty())
-	{
-		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
-		return jvo;
-	}
-	PersonMemberService service;
-	uint64_t count = service.removePersonMember(xpersonList);
-	if (count > 0)
-	{
-		jvo->success(UInt64(count));
-	}
-	else
-	{
-		jvo->fail(UInt64(count));
-	}
 
-	return jvo;
-}
 
 
 StringJsonVO::Wrapper RoleManagementController::execRemoveRole(const String& id)
@@ -296,7 +270,13 @@ Uint64JsonVO::Wrapper RoleManagementController::execAddMember(const PersonMember
 	auto jvo = Uint64JsonVO::createShared();
 	// 参数校验
 	// 非空校验
-	if (!dto->role_xid || !dto->xpersonList)
+	if (!dto->role_xid || !dto->xgroupList || !dto->xorderColumn)
+	{
+		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
+		return jvo;
+	}
+	//有效值校验
+	if (dto->xorderColumn < 0)
 	{
 		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
 		return jvo;
@@ -317,6 +297,30 @@ Uint64JsonVO::Wrapper RoleManagementController::execAddMember(const PersonMember
 	return jvo;
 }
 
+Uint64JsonVO::Wrapper RoleManagementController::execRemoveMember(const UInt64& ROLE_XID)
+{
+	// 定义返回数据对象
+	auto jvo = Uint64JsonVO::createShared();
+	// 参数校验
+	if (!ROLE_XID)
+	{
+		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
+		return jvo;
+	}
+	// 定义一个Service
+	PersonMemberService service;
+	// 执行数据删除
+	if (service.removeData(ROLE_XID.getValue(0))) {
+		jvo->success(ROLE_XID);
+	}
+	else
+	{
+		jvo->fail(ROLE_XID);
+	}
+	// 响应结果
+	return jvo;
+}
+
 GetPersonMemberPageJsonVO::Wrapper RoleManagementController::execGetPersonMember(const GetPersonMemberQuery::Wrapper& query, const PayloadDTO& payload)
 {
 	// 定义一个Service
@@ -328,5 +332,4 @@ GetPersonMemberPageJsonVO::Wrapper RoleManagementController::execGetPersonMember
 	auto jvo = GetPersonMemberPageJsonVO::createShared();
 	jvo->success(result);
 	return jvo;
-
 }

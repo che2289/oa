@@ -5,7 +5,9 @@
 #include "domain/vo/get/queryrole/QueryRoleVO.h"
 #include "domain/query/get/queryrole/QueryRoleQuery.h"
 #include "domain/dto/rolemanagement/RoleManagementDTO/get/queryrole/QueryRoleDTO.h"
-#include "domain/do/rolemanagement/RoleManagementDO/get/queryrole/QueryRoleDO.h"
+
+#include "NacosClient.h"
+#include "RedisClient.h"
 
 /**
 *  获取角色名称列表服务实现

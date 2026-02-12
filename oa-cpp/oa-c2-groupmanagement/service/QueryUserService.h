@@ -2,8 +2,8 @@
 #ifndef _USER_SERVICE_
 #define _USER_SERVICE_
 #include <list>
-#include "domain/vo/group/GroupVO.h"
-#include "domain/dto/group/GroupDTO.h"
+#include "domain/vo/group/Group_VO.h"
+#include "domain/dto/group/Group_DTO.h"
 #include "domain/query/user/UserQuery.h"
 
 /**

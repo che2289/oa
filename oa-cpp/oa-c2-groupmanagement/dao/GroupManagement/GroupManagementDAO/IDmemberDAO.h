@@ -1,5 +1,8 @@
 #pragma once
-
+/*
+ @Author: LemonFlavoredSoda
+ @Date: 2024年 10月 23日 星期三 20:45:51 CST
+*/
 #ifndef _IDMEMBER_DAO_
 #define _IDMEMBER_DAO_
 #include "BaseDAO.h"

@@ -12,8 +12,8 @@ class PersonMemberService
 public:
 	// 保存数据
 	uint64_t saveData(const PersonMemberDTO::Wrapper& dto);
-
-	uint64_t removePersonMember(const PersonMemberDTO::Wrapper& xpersonList);
+	// 通过ID删除数据
+	bool removeData(uint64_t id);
 };
 
 #endif // !_PERSONMEMBER_H_

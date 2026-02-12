@@ -1,3 +1,7 @@
+/*
+ @Author: LemonFlavoredSoda
+ @Date: 2024年 10月 23日 星期三 17:28:51 CST
+*/
 #include "stdafx.h"
 #include "GroupManagementController.h"
 #include "../ApiDeclarativeServicesHelper.h"
@@ -18,6 +22,11 @@
 #include "../../service/delete/DeleteGroupService/DeleteGroupService.h"
 #include "service/groupmanagement/GroupManagementService.h"
 
+
+
+
+
+
 IDmemberPageJsonVO::Wrapper GroupManagementController::execQueryIDmember(const IDmemberQuery::Wrapper& query, const PayloadDTO& payload)
 {
 	 //定义一个Service
@@ -30,14 +39,28 @@ IDmemberPageJsonVO::Wrapper GroupManagementController::execQueryIDmember(const I
 	return jvo;
 }
 
-AddPersonJsonVO::Wrapper GroupManagementController::execAddPerson(const AddPersonDTO::Wrapper& dto)
+
+
+Uint64JsonVO::Wrapper GroupManagementController::execAddPerson(const AddPersonDTO::Wrapper& dto)
 {
+	bool flag = false;
 	// 定义返回数据对象
-	auto jvo = AddPersonJsonVO::createShared();
+	auto jvo = Uint64JsonVO::createShared();
 	// 参数校验
 	// 非空校验
-	if (dto->GROUP_XID.getValue("").size() == 0 || dto->xpersonList.getValue("").size() == 0)
+	if (dto->GROUP_XID.getValue("").size() == 0)
 	{
+		flag = true;
+	}
+
+	for (int i = 0; i < dto->xpersonList->size(); i++) {
+		if (dto->xpersonList[i].getValue("").size() == 0) {
+			flag = true;
+			break;
+		}
+	}
+
+	if (flag) {
 		jvo->init({}, RS_PARAMS_INVALID);
 		return jvo;
 	}
@@ -46,7 +69,7 @@ AddPersonJsonVO::Wrapper GroupManagementController::execAddPerson(const AddPerso
 	AddPersonService service;
 	// 执行数据新增
 	auto return_dto = service.saveData(dto);
-	if (return_dto->GROUP_XID.getValue("").size() && return_dto->xpersonList.getValue("").size()) {
+	if (return_dto) {
 		jvo->success(return_dto);
 	}
 	else
@@ -55,7 +78,6 @@ AddPersonJsonVO::Wrapper GroupManagementController::execAddPerson(const AddPerso
 	}
 	//响应结果
 	return jvo;
-
 }
 
 GroupListPageJsonVO::Wrapper GroupManagementController::execQueryGroupList(const GroupListQuery::Wrapper& query)
@@ -70,15 +92,28 @@ GroupListPageJsonVO::Wrapper GroupManagementController::execQueryGroupList(const
 	return jvo;
 }
 
+
+//骑着蜗牛飙车
 Uint64JsonVO::Wrapper GroupManagementController::execAddAddOrRemoveIdentityMembers(const AddOrRemoveIdentityMembersDTO::Wrapper& dto)
 {
 	// 定义返回数据对象
 	auto jvo = Uint64JsonVO::createShared();
 	// 参数校验
+	if (!dto->groupxid || !dto->xidentityList)
+	{
+		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
+		return jvo;
+	}
+	if(dto->groupxid->empty())
+	{
+		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
+		return jvo;
+	}
+	
 	// 非空校验
 	rolemanagementService service;
 	uint64_t id = service.saveData(dto);
-	if (!dto->groupxid || !dto->xidentityList);
+
 	if (id > 0) {
 		jvo->success(UInt64(id));
 	}
@@ -90,14 +125,14 @@ Uint64JsonVO::Wrapper GroupManagementController::execAddAddOrRemoveIdentityMembe
 	return jvo;
 }
 
-Uint64JsonVO::Wrapper GroupManagementController::execRemoveAddOrRemoveIdentityMembers(const String& groupxid)
+Uint64JsonVO::Wrapper GroupManagementController::execRemoveAddOrRemoveIdentityMembers(const AddOrRemoveIdentityMembersDTO::Wrapper& dto)
 {
 	// 定义返回数据对象
 	auto jvo = Uint64JsonVO::createShared();
 	// 定义一个Service
 	rolemanagementService service;
 	// 执行数据删除
-	if (service.removeData(groupxid)) {
+	if (service.removeData(dto)) {
 		jvo->success(1);
 	}
 	else
@@ -107,6 +142,7 @@ Uint64JsonVO::Wrapper GroupManagementController::execRemoveAddOrRemoveIdentityMe
 	// 响应结果
 	return jvo;
 }
+
 
 Uint64JsonVO::Wrapper GroupManagementController::execAddGroup(const GroupListDTO::Wrapper& dto)
 {
@@ -258,17 +294,21 @@ StringJsonVO::Wrapper GroupManagementController::execDeleteGroup(const String& i
 
 GetGroupMembersPageJsonVO::Wrapper GroupManagementController::execQueryGetGroupMembers(const GetGroupMembersQuery::Wrapper& query, const PayloadDTO& payload)
 {
-
 	// 定义一个Service
 	rolemanagementService service;
 	// 查询数据
 	auto result = service.listAllG(query);
 	// 响应结果
 	auto jvo = GetGroupMembersPageJsonVO::createShared();
-	jvo->success(query);
+	jvo->success(result);
 	return jvo;
-
 }
+
+
+//Uint64JsonVO::Wrapper GroupManagementController::execDeleteGroup(const UInt64& orderNumber)
+//{
+//	return {};
+//}
 
 
 GetOrganizationMembersPageJsonVO::Wrapper GroupManagementController::execQueryGetOrganizationMembers(const GetOrganizationMembersQuery::Wrapper& query, const PayloadDTO& payload)
@@ -279,68 +319,78 @@ GetOrganizationMembersPageJsonVO::Wrapper GroupManagementController::execQueryGe
 	auto result = service.listAllO(query);
 	// 响应结果
 	auto jvo = GetOrganizationMembersPageJsonVO::createShared();
-	jvo->success(query);
+	jvo->success(result);
 	return jvo;
-
 }
 
-Uint64JsonVO::Wrapper GroupManagementController::execRemovePerson(const String& group_person)
+
+
+Uint64JsonVO::Wrapper GroupManagementController::execRemovePerson(const RemovePersonDTO::Wrapper& group_person)
 {
+	bool flag = false;
 	// 定义返回数据对象
 	auto jvo = Uint64JsonVO::createShared();
 	// 参数校验
-	if (group_person.getValue("").size()==0)
-	{
-		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
+	if (group_person->GROUP_XID.getValue("").size() == 0) {
+		flag = true;
+	}
+	for (int i = 0; i < group_person->xpersonList->size(); i++) {
+		if (group_person->xpersonList[i].getValue("").size() == 0) {
+			flag = true;
+			break;
+		}
+	}
+	if (flag) {
+		jvo->init({}, RS_PARAMS_INVALID);
 		return jvo;
 	}
 	// 定义一个Service
 	RemovePersonService service;
 	// 执行数据删除
-	UInt64 res = service.removeData(group_person);
+	int res = service.removeData(group_person);
 	if (res) {
 		jvo->success(res);
 	}
 	else
 	{
-		jvo->fail(!res);
+		jvo->fail(res);
 	}
 	// 响应结果
 	return jvo;
 }
 
 
-Uint64JsonVO::Wrapper GroupManagementController::executeModifyGroup(const GroupDTO::Wrapper& dto)
+StringJsonVO::Wrapper GroupManagementController::executeModifyGroup(const Group_DTO::Wrapper& dto)
 {
 	// 定义返回数据对象
-	auto jvo = Uint64JsonVO::createShared();
+	auto jvo = StringJsonVO::createShared();
 	// 参数校验
-	if (!dto->id || dto->id <= 0)
+	/*if (!dto->id || dto->id <= 0)
 	{
 		jvo->init(UInt64(-1), RS_PARAMS_INVALID);
 		return jvo;
-	}
+	}*/
 	// 定义一个Service
 	ModifyGroupInfoService service;
 	// 执行数据修改
 	if (service.updateData(dto)) {
-		jvo->success(dto->id);
+		jvo->success(dto->xid);
 	}
 	else
 	{
-		jvo->fail(dto->id);
+		jvo->fail(dto->xid);
 	}
 	// 响应结果
 	return jvo;
 }
 
-UserPageJsonVO::Wrapper GroupManagementController::executeQueryUser(const UserQuery::Wrapper& query, const PayloadDTO& payload)
+UserPage_JsonVO::Wrapper GroupManagementController::executeQueryUser(const UserQuery::Wrapper& query, const PayloadDTO& payload)
 {	// 定义一个Service
 	UserService service;
 	//// 查询数据
 	auto result = service.listAll(query);
 	// 响应结果
-	auto jvo = UserPageJsonVO::createShared();
+	auto jvo = UserPage_JsonVO::createShared();
 	jvo->success(result);
 	return jvo;
 }

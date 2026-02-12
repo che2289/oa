@@ -5,15 +5,14 @@
 #include "domain/do/rolemanagement/RoleManagementDO/get/queryrole/QueryRoleDO.h"
 #include "domain/do/rolemanagement/RoleManagementDO/put/addrole/AddroleDO.h"
 
-class QueryRoleMapper : public Mapper<OrgRoleDO>
+class QueryRoleMapper : public Mapper<OrgRoleNameDO>
 {
 public:
-	OrgRoleDO mapper(ResultSet* resultSet) const override
+	OrgRoleNameDO mapper(ResultSet* resultSet) const override
 	{
-		OrgRoleDO data;
-		data.setXName(resultSet->getString(2));
+		OrgRoleNameDO data;
 		data.setXid(resultSet->getString(1));
-		data.setXUnique(resultSet->getString(3));
+		data.setXname(resultSet->getString(2));
 		return data;
 	}
 };

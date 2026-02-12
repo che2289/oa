@@ -30,11 +30,6 @@ class PersonListDTO : public oatpp::DTO
 	DTO_FIELD_INFO(mailbox) {
 		info->description = "mailbox";
 	}
-	DTO_FIELD(String, xpersonList);
-	DTO_FIELD_INFO(xpersonList) {
-		info->description = "xpersonList";
-	}
-
 };
 
 /**

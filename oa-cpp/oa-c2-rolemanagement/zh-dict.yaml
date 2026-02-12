@@ -4,11 +4,7 @@ addroleDTO:
     name: 角色名称
     key: 唯一编码
     refer: 角色描述
-    startTime: 角色创建于
-    endTime: 最后修改于
-    fullName: 角色的全称为
   information: 获取角色信息
-
   del: 删除角色
 
   post:
@@ -41,9 +37,10 @@ rolelist:
    words: 关键字
    id: 编号
    name: 名称
-PersonMember:
+   Id: 角色id
+add_del_PersonMember:
  get:
-  summary: 获取群组成员
+  summary: 获取个人信息
  put: 
   summary: 增加个人信息
  post:
@@ -52,12 +49,8 @@ PersonMember:
   summary: 删除个人信息
  field:   
   ROLE_XID: 角色id
-  xpersonList: 群组id
+  xgroupList: 群组id
   xorderColumn: 角色顺序
-  xname: 群组名称
-  xdescription: 群组描述
-  xdistinguishedName: 群组全称
-
 
 modifyrole:
  summary: 修改角色信息

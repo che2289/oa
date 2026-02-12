@@ -20,7 +20,7 @@
 #include "Router.h"
 #include "ApiHelper.h"
 #include "./rolemanagement/RoleManagementController.h"
-//#include "RoleResourceController.h"
+
 
 #ifdef HTTP_SERVER_DEMO
 #include "user/UserController.h"
@@ -54,30 +54,10 @@ void Router::initRouter()
 #endif
 
 	//#TIP :系统扩展路由定义，写在这个后面
-	//ROUTER_SIMPLE_BIND(AddroleController);
 
 	//只保留这一个
 	ROUTER_SIMPLE_BIND(RoleManagementController);
 	//只保留这一个
-
-	//ROUTER_SIMPLE_BIND(RoleResourceController);
-
-	//ROUTER_SIMPLE_BIND(add_del_MemberController);
-	//ROUTER_SIMPLE_BIND(QueryGroupMemberController);
-	//ROUTER_SIMPLE_BIND(UpdateRoleController);
-	//// 绑定角色列表控制器
-	//ROUTER_SIMPLE_BIND(RolelistController);
-	//ROUTER_SIMPLE_BIND(QueryPersonController);
-	//ROUTER_SIMPLE_BIND(GetroleController);
-	//ROUTER_SIMPLE_BIND(add_del_MemberController);
-	//ROUTER_SIMPLE_BIND(QueryGroupMemberController);
-	//ROUTER_SIMPLE_BIND(UpdateRoleController);
-	//// 绑定角色列表控制器
-	//ROUTER_SIMPLE_BIND(QueryPersonController);
-	//ROUTER_SIMPLE_BIND(UpdateRoleController);
-	//// 绑定角色列表控制器
-	//ROUTER_SIMPLE_BIND(RolelistController);
-	//ROUTER_SIMPLE_BIND(QueryPersonController);
 
 
 }

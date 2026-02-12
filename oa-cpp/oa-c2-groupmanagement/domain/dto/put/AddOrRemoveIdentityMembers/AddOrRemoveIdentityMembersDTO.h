@@ -18,7 +18,7 @@ class AddOrRemoveIdentityMembersDTO : public oatpp::DTO
 		info->description = ZH_WORDS_GETTER("AddOrRemoveIdentityMembers.field.id");
 	}
 	// 属于该组的身份成员
-	DTO_FIELD(String, xidentityList);
+	DTO_FIELD(List<String>, xidentityList);
 	DTO_FIELD_INFO(xidentityList) {
 		info->description = ZH_WORDS_GETTER("AddOrRemoveIdentityMembers.field.xidentityList");
 	}

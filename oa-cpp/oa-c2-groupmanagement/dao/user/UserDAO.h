@@ -5,7 +5,7 @@
 #include <domain/do/get/UserDO.h>
 #include "domain/query/user/UserQuery.h"
 /**
- * 数据库操作实现
+ * 示例表数据库操作实现
  */
 class UserDAO : public BaseDAO
 {

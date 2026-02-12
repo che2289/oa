@@ -32,7 +32,6 @@ PersonListPageDTO::Wrapper RoleManagementService::listAll(const PersonListQuery:
 		dto->employee = sub.getXEmployee();
 		dto->phone = sub.getXMobile();
 		dto->mailbox = sub.getXMail();
-		dto->xpersonList = sub.getXid();
 		// 		dto->id = sub.getId();
 		// 		dto->name = sub.getName();
 		// 		dto->sex = sub.getSex();

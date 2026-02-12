@@ -5,16 +5,18 @@
 #include "../../../domain/do/groupmanagement/OrgGroupDO.h"
 #include "Mapper.h"
 
-class GetGroupInfoMapper: public Mapper<OrgGroupDO>
+class GetGroupInfoMapper : public Mapper<OrgGroupDO>
 {
 public:
 	OrgGroupDO mapper(ResultSet* resultSet) const override
 	{
 		OrgGroupDO data;
-		
+
 		data.setxName(resultSet->getString(1));
 		data.setxId(resultSet->getString(2));
 		data.setxDescription(resultSet->getString(3));
+		data.setxCreateTime(resultSet->getString(4));
+		data.setxUpdateTime(resultSet->getString(5));
 
 		return data;
 	}

@@ -1,3 +1,7 @@
+//
+// Created by asd on 2024/10/25.
+//
+
 #include "GroupManagementDAO.h"
 
 #include "OrgGroupIdListMapper.h"
@@ -8,12 +12,6 @@
 
 int GroupManagementDAO::delByGroupIdList(const DelGroupMemberDTO::Wrapper& dto) {
 	string groupId = dto->gruopId;//所属的群组的id
-
-	for(auto& it : *dto->groupList) {
-		if( groupId == *it ) {
-			return 0;
-		}
-	}
 
 	string groupListId = "'" + dto->groupList->front() + "'";//从属的群组列表id
 	//先获取第一个群组id
@@ -35,7 +33,7 @@ int GroupManagementDAO::delByGroupIdList(const DelGroupMemberDTO::Wrapper& dto) 
 
 	sqlSession->beginTransaction();
 	if( sqlSession->executeUpdate(sqlDel) > 0 ) {
-		if( sqlSession->executeUpdate(sqlUpdate) > 0 ) {
+		if( sqlSession->executeUpdate(sqlUpdate) >= 0 ) {
 			sqlSession->commitTransaction();
 			return 1;
 		}
@@ -69,7 +67,7 @@ int GroupManagementDAO::delByUnitIdList(const DelUnitMemberDTO::Wrapper &dto) {
 
 	sqlSession->beginTransaction();
 	if( sqlSession->executeUpdate(sqlDel) > 0 ) {
-		if( sqlSession->executeUpdate(sqlUpdate) > 0 ) {
+		if( sqlSession->executeUpdate(sqlUpdate) >= 0 ) {
 			sqlSession->commitTransaction();
 			return 1;
 		}
@@ -91,16 +89,21 @@ int GroupManagementDAO::addGroupIdList(string& groupId, list<string>& addIdList,
 	sqlSession->beginTransaction();
 	if( !addIdList.empty() ) {
 		//有群组要增加
-		string add = "('" + groupId + "', '" + addIdList.front() + "', '-1')";//从属的群组列表id
+		string add = " SELECT '" + groupId + "', '" + addIdList.front() +
+			"', -1 WHERE EXISTS (SELECT 1 FROM org_group WHERE xid = '" + addIdList.front() + "') "
+			"AND EXISTS(SELECT 1 FROM org_group WHERE xid = '" + groupId + "')";//从属的群组列表id
 		auto it = addIdList.begin();
 		++it;
+		int count = 1;
 		for(; it != addIdList.end(); ++it) {
-			add.append( ", ('" + groupId + "', '" );
-			add.append( *it + "', '-1')" );
+			add.append( " UNION ALL SELECT '" + groupId + "', '" + *it );
+			add.append( "', -1 WHERE EXISTS (SELECT 1 FROM org_group WHERE xid = '" + *it + "')" );
+			add.append( "AND EXISTS(SELECT 1 FROM org_group WHERE xid = '" + groupId + "')" );
+			count++;
 		}
 
-		string sqlAdd = "INSERT INTO org_group_grouplist (GROUP_XID, xgroupList, xorderColumn) VALUES" + add ;
-		if( sqlSession->executeUpdate(sqlAdd) <= 0 ) {
+		string sqlAdd = "INSERT INTO org_group_grouplist (GROUP_XID, xgroupList, xorderColumn)" + add ;
+		if( sqlSession->executeUpdate(sqlAdd) != count ) {
 			//增加失败，回滚事务
 			sqlSession->rollbackTransaction();
 			return 0;
@@ -147,17 +150,23 @@ int GroupManagementDAO::addUnitIdList(string& groupId, list<string>& addIdList, 
 
 	sqlSession->beginTransaction();
 	if( !addIdList.empty() ) {
+		//"SELECT '"groupId"', '"addIdList.front()"', -1 WHERE EXISTS (SELECT 1 FROM org_group WHERE xid = '"groupId"')"
 		//有群组要增加
-		string add = "('" + groupId + "', '" + addIdList.front() + "', '-1')";//从属的群组列表id
+		string add = " SELECT '" + groupId + "', '" + addIdList.front() +
+			"', -1 WHERE EXISTS (SELECT 1 FROM org_unit WHERE xid = '" + addIdList.front() + "')"
+			"AND EXISTS(SELECT 1 FROM org_group WHERE xid = '" + groupId + "')";//从属的群组列表id
 		auto it = addIdList.begin();
 		++it;
+		int count = 1;
 		for(; it != addIdList.end(); ++it) {
-			add.append( ", ('" + groupId + "', '" );
-			add.append( *it + "', '-1')" );
+			add.append( " UNION ALL SELECT '" + groupId + "', '" + *it );
+			add.append( "', -1 WHERE EXISTS (SELECT 1 FROM org_unit WHERE xid = '" + *it + "')" );
+			add.append( "AND EXISTS(SELECT 1 FROM org_group WHERE xid = '" + groupId + "')" );
+			count++;
 		}
 
-		string sqlAdd = "INSERT INTO org_group_unitlist (GROUP_XID, xunitList, xorderColumn) VALUES" + add ;
-		if( sqlSession->executeUpdate(sqlAdd) <= 0 ) {
+		string sqlAdd = "INSERT INTO org_group_unitlist (GROUP_XID, xunitList, xorderColumn)" + add ;
+		if( sqlSession->executeUpdate(sqlAdd) != count ) {
 			//增加失败，回滚事务
 			sqlSession->rollbackTransaction();
 			return 0;

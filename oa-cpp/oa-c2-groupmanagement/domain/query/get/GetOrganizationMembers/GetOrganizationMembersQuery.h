@@ -31,9 +31,5 @@ class GetOrganizationMembersQuery : public PageQuery
 	}
 
 };
-class GetOrganizationMembersPageQuery : public PageDTO<GetOrganizationMembersQuery::Wrapper>
-{
-	DTO_INIT(GetOrganizationMembersPageQuery, PageDTO<GetOrganizationMembersQuery::Wrapper>);
-};
 #include OATPP_CODEGEN_END(DTO)
 #endif // !_GetOrganizationMembers_QUERY_

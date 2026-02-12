@@ -22,31 +22,15 @@ GetPersonMemberPageDTO::Wrapper GetPersonMemberService::listAll(const GetPersonM
 	pages->total = count;
 	pages->calcPages();
 	list<GetPersonMemberDO> result = dao.selectWithPage(query);
-
-	for (auto item : result)
-	{
-		std::cout << item.getXgroupList() << std::endl;
-	}
-
-	list<GetPersonMemberDTO> re = dao.selectGroupMemberWithPage(result);
-
-	for (auto sub : re)
+	// 将DO转换成DTO
+	for (GetPersonMemberDO sub : result)
 	{
 		auto dto = GetPersonMemberDTO::createShared();
-		dto->xname = sub.xname;
-		dto->xdescription = sub.xdescription;
-		dto->xdistinguishedName = sub.xdistinguishedName;
-		dto->role_xid = query->ROLE_XID;
-		dto->xgroupList = sub.xgroupList;
-		//ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, role_xid, ROLE_XID, xgroupList, XgroupList, xorderColumn, XorderColumn)
-			pages->addData(dto);
-	}
-	// 将DO转换成DTO
-	/*for (GetPersonMemberDO sub : result)
-	{
 		
+		ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, role_xid, ROLE_XID, xgroupList, XgroupList, xorderColumn, XorderColumn)
+			pages->addData(dto);
 
-	}*/
+	}
 	
 	return pages;
 }

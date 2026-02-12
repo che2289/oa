@@ -6,7 +6,6 @@
 #ifndef _ADDPERSON_SERVICE_
 #define _ADDPERSON_SERVICE_
 #include <list>
-#include "domain/vo/put/AddPersonVO.h"
 #include "domain/dto/put/AddPersonDTO.h"
 
 /**
@@ -16,7 +15,7 @@ class AddPersonService
 {
 public:
 	// ±£´æÊý¾Ý
-	AddPersonDTO::Wrapper saveData(const AddPersonDTO::Wrapper& dto);
+	uint64_t saveData(const AddPersonDTO::Wrapper& dto);
 };
 
 #endif // !_ADDPERSON_SERVICE_

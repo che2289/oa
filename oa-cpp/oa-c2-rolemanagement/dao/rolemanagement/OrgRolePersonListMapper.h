@@ -2,7 +2,7 @@
 #define _ORG_ROLE_PERSON_LIST_MAPPER_
 
 #include "Mapper.h"
-#include "../../domain/do/get/personlist/OrgRolePersonListDO.h"
+#include "../../domain/do/get/personlist\OrgRolePersonListDO.h"
 
 
 class OrgRolePersonListMapper : public Mapper<OrgRolePersonListDO>
@@ -16,7 +16,6 @@ public:
 		data.setXEmployee(resultSet->getString(2));
 		data.setXMobile(resultSet->getString(3));
 		data.setXMail(resultSet->getString(4));
-		data.setXid(resultSet->getString(5));
 		//data.setXOrderColumn(resultSet->getUInt64(3));
 		return data;
 	}

@@ -19,15 +19,21 @@ class GetroleVO :public oatpp::DTO
 	//角色描述
 	API_DTO_FIELD(String, refer, ZH_WORDS_GETTER("addroleDTO.field.refer"), false, "");
 
-	API_DTO_FIELD(String, fullName, ZH_WORDS_GETTER("addroleDTO.field.fullName"), false, "");
-
-	//角色创建于
-	API_DTO_FIELD(String, startTime, ZH_WORDS_GETTER("addroleDTO.field.startTime"), false, "");
-
-	//最后修改于
-	API_DTO_FIELD(String, endTime, ZH_WORDS_GETTER("addroleDTO.field.endTime"), false, "");
-
-
+	//// 角色名称
+	//DTO_FIELD(String, name);
+	//DTO_FIELD_INFO(name) {
+	//	info->description = ZH_WORDS_GETTER("addroleDTO.field.name");
+	//}
+	//// 唯一编码
+	//DTO_FIELD(String, key);
+	//DTO_FIELD_INFO(key) {
+	//	info->description = ZH_WORDS_GETTER("addroleDTO.field.key");
+	//}
+	//// 角色描述
+	//DTO_FIELD(String, refer);
+	//DTO_FIELD_INFO(refer) {
+	//	info->description = ZH_WORDS_GETTER("addroleDTO.field.refer");
+	//}
 
 };
 

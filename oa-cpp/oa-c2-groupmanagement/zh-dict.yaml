@@ -1,6 +1,6 @@
 grouplist:
  get:
-  summary: 获取群组列表
+  summary: 获取群组名称列表
  add:
   summary: 新增群组
  field:
@@ -98,11 +98,11 @@ unitMember:
 
 AddOrRemoveIdentityMembers:
  field:
-  id: 群组唯一标识
+  id: 群组成员唯一标识
   name: 名称
   xunitList: 层级名称
   allname: 群组全称
-  xidentityList: 属于该组的身份成员
+  xidentityList: 属于该组的身份成员id列表
  post:
   summary: 增加身份成员
  delete:
@@ -139,10 +139,12 @@ role:
   phone: 获取手机号码
   mail: 获取电子邮件
  field:
+  GROUP_XID: 群组编码
   name: 人员名称
-  id: 人员工号
+  xorderNumber: 人员工号
   phone: 手机号码
   mail: 电子邮件
+  xid: 个人编码
 
      
 

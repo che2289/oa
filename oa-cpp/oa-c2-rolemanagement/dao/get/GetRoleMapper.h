@@ -18,11 +18,6 @@ public:
 		data.setName(resultSet->getString("xname"));
 		data.setKey(resultSet->getString("xunique"));
 		data.setRefer(resultSet->getString("xdescription"));
-		data.setFullname(resultSet->getString("xdistinguishedName"));
-		data.setStartTime(resultSet->getString("xcreateTime"));
-		data.setEndTime(resultSet->getString("xupdateTime"));
-		
-
 
 		return data;
 	}

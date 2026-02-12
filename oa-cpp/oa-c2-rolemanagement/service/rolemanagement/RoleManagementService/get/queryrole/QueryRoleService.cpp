@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "QueryRoleService.h"
 #include "dao/rolemanagement/RoleManagementDAO/get/queryrole/QueryRoleDAO.h"
+#include "domain/do/get/queryrole/QueryRoleDO.h"
 
 #include "dao/get/queryrole/QueryRoleDAO.h"
 
@@ -21,13 +22,13 @@ QueryRolePageDTO::Wrapper QueryRoleService::listAll(const QueryRoleQuery::Wrappe
 	// 分页查询数据
 	pages->total = count;
 	pages->calcPages();
-	list<OrgRoleDO> result = dao.selectWithPage(query);
+	list<OrgRoleNameDO> result = dao.selectWithPage(query);
 
 	// 将DO转换成DTO
-	for (OrgRoleDO sub : result)
+	for (OrgRoleNameDO sub : result)
 	{
 		auto dto = QueryRoleDTO::createShared();
-		ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, xid, Xid,xname, XName,xunique,XUnique);
+		ZO_STAR_DOMAIN_DO_TO_DTO(dto, sub, xid, Xid,xname, Xname);
 		pages->addData(dto);
 	}
 	return pages;
