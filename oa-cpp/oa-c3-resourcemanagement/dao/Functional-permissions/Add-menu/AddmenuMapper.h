@@ -7,7 +7,7 @@
 #include "../../../domain/do/Function-permissions/Org_role_menulistDO.h"
 
 /**
- * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ * ±í×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class AddmenuMapper : public Mapper<Org_role_menulistDO>
 {

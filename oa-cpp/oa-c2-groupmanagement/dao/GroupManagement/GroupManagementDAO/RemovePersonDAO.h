@@ -1,8 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 26日 星期六 09:37:55 CST
-*/
+
 #ifndef _REMOVEPERSON_DAO_
 #define _REMOVEPERSON_DAO_
 #include "BaseDAO.h"

@@ -5,7 +5,7 @@
 #include "../../domain/dto/Person/add/PersonInfoDTO.h"
 #include "../../domain/do/org_personDo/org_personDO.h"
 /**
- * 示例服务实现，演示基础的示例服务实现
+ * 服务实现，演示基础的示例服务实现
  */
 class AddServe
 {

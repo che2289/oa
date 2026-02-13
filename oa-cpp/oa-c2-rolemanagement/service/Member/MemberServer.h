@@ -7,7 +7,7 @@
 #include "domain/dto/add_del_PersonMember/MemberDTO.h"
 
 /**
- * 示例服务实现，演示基础的示例服务实现
+ * 服务实现，演示基础的示例服务实现
  */
 class MemberService
 {

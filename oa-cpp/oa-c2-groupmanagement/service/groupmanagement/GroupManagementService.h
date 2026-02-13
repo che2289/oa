@@ -1,6 +1,4 @@
-//
-// Created by asd on 2024/10/23.
-//
+
 #ifndef GROUPMANAGEMENTSERVICE_H
 #define GROUPMANAGEMENTSERVICE_H
 #include <domain/dto/groupMember/del/DelGroupMemberDTO.h>

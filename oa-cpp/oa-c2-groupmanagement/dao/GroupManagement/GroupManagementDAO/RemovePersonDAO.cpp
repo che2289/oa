@@ -1,7 +1,4 @@
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 26日 星期六 09:37:55 CST
-*/
+
 #include "stdafx.h"
 #include "RemovePersonDAO.h"
 #include "RemovePersonMapper.h"

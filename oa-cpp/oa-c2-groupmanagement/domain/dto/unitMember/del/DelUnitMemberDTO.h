@@ -1,6 +1,3 @@
-//
-// Created by asd on 2024/10/20.
-//
 
 #ifndef DELUNITMEMBERDTO_H
 #define DELUNITMEMBERDTO_H

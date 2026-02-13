@@ -1,6 +1,4 @@
-//
-// Created by asd on 2024/10/23.
-//
+
 #include "GroupManagementService.h"
 
 #include <domain/vo/BaseJsonVO.h>

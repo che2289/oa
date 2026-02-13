@@ -8,7 +8,7 @@
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 /**
- * 示例显示JsonVO，用于响应给客户端的Json对象
+ * 显示JsonVO，用于响应给客户端的Json对象
  */
 class PermissionsJsonVO : public JsonVO<oatpp::data::mapping::type::List<ResourcetreeDTO::Wrapper>> {
     DTO_INIT(PermissionsJsonVO, JsonVO<oatpp::data::mapping::type::List<ResourcetreeDTO::Wrapper>>);

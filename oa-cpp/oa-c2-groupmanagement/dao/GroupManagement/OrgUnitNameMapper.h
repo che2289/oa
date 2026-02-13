@@ -1,6 +1,3 @@
-//
-// Created by asd on 2024/10/26.
-//
 
 #ifndef ORGUNITNAMEMAPPER_H
 #define ORGUNITNAMEMAPPER_H

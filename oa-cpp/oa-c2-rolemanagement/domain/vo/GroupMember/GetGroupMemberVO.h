@@ -8,7 +8,7 @@
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 /**
- * 示例显示JsonVO，用于响应给客户端的Json对象
+ * 显示JsonVO，用于响应给客户端的Json对象
  */
 class MemberGroupJsonVO : public JsonVO<GetGroupMemberDTO::Wrapper> {
 	DTO_INIT(MemberGroupJsonVO, JsonVO<GetGroupMemberDTO::Wrapper>);

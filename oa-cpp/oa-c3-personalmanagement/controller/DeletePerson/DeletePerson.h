@@ -16,16 +16,13 @@
 #include"service/AddServe/AddServe.h"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
-/**
- * �ļ�����ʾ���ӿ�
- */
 class DeletePersonController : public oatpp::web::server::api::ApiController
 {
-	// ����������������
+	
 	API_ACCESS_DECLARE(DeletePersonController);
-public://����ӿ�
+public:
 
-	//����˵�
+	
 	ENDPOINT_INFO(deletePerson) {
 		info->summary = ZH_WORDS_GETTER("person.delete.summary");
 		API_DEF_ADD_AUTH();
@@ -33,13 +30,13 @@ public://����ӿ�
 		API_DEF_ADD_PATH_PARAMS(UInt64, "id", ZH_WORDS_GETTER("person.delete.id"), 1, true);
 	}
 	ENDPOINT(API_M_DEL, "personal-management/delete-derson/{id}", deletePerson, PATH(String, id), API_HANDLER_AUTH_PARAME) {
-		// ����ִ�к�����Ӧ���
+		
 		API_HANDLER_RESP_VO(execDeletePerson(id));
 	}
  
 	 
 
-private: // ����ӿ�ִ�к���
+private:
 
 	Uint64JsonVO::Wrapper execDeletePerson(const String& id);
 

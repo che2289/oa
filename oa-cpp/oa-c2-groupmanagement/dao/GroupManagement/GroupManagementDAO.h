@@ -1,7 +1,3 @@
-//
-// Created by asd on 2024/10/25.
-//
-
 #ifndef GROUPMANAGEMENTDAO_H
 #define GROUPMANAGEMENTDAO_H
 #include <BaseDAO.h>

@@ -5,7 +5,7 @@
 #include "../../domain/do/Attrib_add/Attrib_add_DO.h"
 
 /**
- * 示例表数据库操作实现
+ * 数据库操作实现
  */
 class Attrib_add_DAO : public BaseDAO
 {

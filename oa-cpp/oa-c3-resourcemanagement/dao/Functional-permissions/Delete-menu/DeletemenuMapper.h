@@ -6,7 +6,7 @@
 
 #include "../../../domain/do/Function-permissions/Org_role_menulistDO.h"
 /**
- * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ * ×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class DeletemenuMapper : public Mapper<Org_role_menulistDO>
 {

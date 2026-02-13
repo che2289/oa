@@ -6,7 +6,7 @@
 #include "../../domain/do/Attrib_add/Attrib_add_DO.h"
 
 /**
- * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ * ±í×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class Attrib_add_Mapper : public Mapper<Attrib_add_DO>
 {

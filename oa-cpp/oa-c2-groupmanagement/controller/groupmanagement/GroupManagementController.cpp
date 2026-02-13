@@ -1,7 +1,3 @@
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 23日 星期三 17:28:51 CST
-*/
 #include "stdafx.h"
 #include "GroupManagementController.h"
 #include "../ApiDeclarativeServicesHelper.h"

@@ -1,7 +1,4 @@
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 23日 星期三 20:32:15 CST
-*/
+
 #include "stdafx.h"
 #include "IDmemberQueryService.h"
 #include "../../../dao/GroupManagement/GroupManagementDAO/IDmemberDAO.h"

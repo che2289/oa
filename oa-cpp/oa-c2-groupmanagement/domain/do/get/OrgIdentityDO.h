@@ -1,8 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 23日 星期三 23:19:41 CST
-*/
+
 //org_identity
 #ifndef _ORGIDENTITY_DO_
 #define _ORGIDENTITY_DO_

@@ -5,7 +5,7 @@
 #include "domain/dto/rolemanagement/RoleManagementDTO/put/personmember/PersonMemberDTO.h"
 #include"domain/do/put/PersonMember/PersonMemberDO.h"
 /**
- * 示例服务实现，演示基础的示例服务实现
+ * 服务实现，演示基础的示例服务实现
  */
 class PersonMemberService
 {

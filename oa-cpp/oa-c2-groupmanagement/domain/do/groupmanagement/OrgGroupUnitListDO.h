@@ -1,6 +1,3 @@
-//
-// Created by asd on 2024/10/23.
-//
 
 #ifndef ORGGROUPUNITLISTDO_H
 #define ORGGROUPUNITLISTDO_H

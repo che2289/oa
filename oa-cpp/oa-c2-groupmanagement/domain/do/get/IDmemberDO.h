@@ -1,8 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 23日 星期三 23:19:41 CST
-*/
+
 //视图DO
 #ifndef _IDMEMBERDO_DO_
 #define _IDMEMBERDO_DO_

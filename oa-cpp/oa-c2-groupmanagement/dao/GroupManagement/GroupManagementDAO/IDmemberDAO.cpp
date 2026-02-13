@@ -1,7 +1,4 @@
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 24日 星期四 09:11:54 CST
-*/
+
 #include "stdafx.h"
 #include "IDmemberDAO.h"
 #include "IDmemberMapper.h"

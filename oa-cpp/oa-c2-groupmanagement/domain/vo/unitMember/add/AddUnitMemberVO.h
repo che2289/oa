@@ -1,6 +1,3 @@
-//
-// Created by asd on 2024/10/19.
-//
 
 #ifndef ADDUNITMEMBERVO_H
 #define ADDUNITMEMBERVO_H

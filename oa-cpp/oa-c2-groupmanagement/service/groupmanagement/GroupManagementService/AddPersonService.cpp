@@ -1,7 +1,4 @@
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 25日 星期五 19:40:34 CST
-*/
+
 #include "stdafx.h"
 #include "AddPersonService.h"
 #include "../../../dao/GroupManagement/GroupManagementDAO/AddPersonDAO.h"

@@ -1,8 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 25日 星期五 19:33:03 CST
-*/
+
 #ifndef _ADDPERSON_SERVICE_
 #define _ADDPERSON_SERVICE_
 #include <list>

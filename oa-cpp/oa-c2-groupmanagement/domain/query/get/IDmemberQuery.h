@@ -1,9 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 23日 星期三 16:40:58 CST
 
-*/
 #ifndef _IDMEMBER_QUERY_
 #define _IDMEMBER_QUERY_
 

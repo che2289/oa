@@ -16,14 +16,12 @@
 #include"SnowFlake.h"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
-/**
- * �ļ�����ʾ���ӿ�
- */
+
 class AddPersonController : public oatpp::web::server::api::ApiController
 {
-	// ����������������
+	
 	API_ACCESS_DECLARE(AddPersonController);
-public://����ӿ�
+public:
 	 
 
 	ENDPOINT_INFO(addPerson) {

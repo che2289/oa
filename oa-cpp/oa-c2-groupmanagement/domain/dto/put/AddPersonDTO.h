@@ -1,8 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 25日 星期五 19:20:15 CST
-*/
+
 #ifndef _ADDPERSON_DTO_
 #define _ADDPERSON_DTO_
 #include "../../GlobalInclude.h"

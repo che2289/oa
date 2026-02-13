@@ -6,7 +6,7 @@
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 /**
- * 示例传输对象
+ * 传输对象
  */
 class DutySettingDTO: public oatpp::DTO
 {

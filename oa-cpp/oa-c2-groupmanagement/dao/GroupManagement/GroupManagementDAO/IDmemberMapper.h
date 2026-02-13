@@ -1,8 +1,5 @@
 #pragma once
-/*
- @Author: LemonFlavoredSoda
- @Date: 2024年 10月 24日 星期四 09:14:46 CST
-*/
+
 #ifndef _IDMEMBER_MAPPER_
 #define _IDMEMBER_MAPPER_
 

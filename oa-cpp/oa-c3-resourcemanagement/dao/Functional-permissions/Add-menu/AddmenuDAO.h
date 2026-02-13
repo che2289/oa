@@ -7,7 +7,7 @@
 
 
 /**
- * 示例表数据库操作实现
+ * 表数据库操作实现
  */
 class AddmenuDAO : public BaseDAO
 {

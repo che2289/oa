@@ -4,7 +4,7 @@
 #include "../DoInclude.h"
 
 /**
- * 示例数据库实体类
+ * 数据库实体类
  */
 class Org_role_menulistDO
 {
