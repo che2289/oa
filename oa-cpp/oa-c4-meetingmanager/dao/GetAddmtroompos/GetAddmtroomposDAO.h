@@ -7,7 +7,7 @@
 #include "../../domain/query/getmtroompos/GetmtroomposQuery.h"
 
 /**
- * 示数据库操作实现
+ * 数据库操作实现
  */
 class GetAddmtroomposDAO : public BaseDAO
 {

@@ -6,7 +6,7 @@
 #include "../../../domain/do/Meeting/uploadattachment/UploadAttachmentDO.h"
 
 /**
- * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ * ×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class UploadAttachmentMapper : public Mapper<UploadAttachmentDO>
 {

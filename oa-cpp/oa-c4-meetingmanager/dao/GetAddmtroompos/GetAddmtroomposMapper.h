@@ -7,7 +7,7 @@
 #include "../../domain/do/GetAddmtroompos/GetAddmtroomposDO.h"
 
 /**
- * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ * ×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class GetAddmtroomposMapper : public Mapper<GetAddmtroomposDO>
 {

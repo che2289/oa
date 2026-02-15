@@ -8,7 +8,7 @@
 #include "domain/dto/getmtroompos/GetmtroomposDTO.h"
 
 /**
- * 示例服务实现，演示基础的示例服务实现
+ * 服务实现，演示基础的示例服务实现
  */
 class GetAddmtroomposService
 {

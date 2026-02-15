@@ -6,7 +6,7 @@
 #include "../../../domain/do/Meeting/checkinmeeting/CheckinMeetingDO.h"
 
 /**
- * Ê¾Àı±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ * ×Ö¶ÎÆ¥ÅäÓ³Éä
  */
 class CheckinMeetingMapper : public Mapper<CheckinMeetingDO>
 {
